@@ -72,7 +72,7 @@ public class BasePage {
 
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
-			devTools = ((ChromeDriver)driver).getDevTools();
+			devTools = ((ChromeDriver) driver).getDevTools();
 		} else if (browsername.equalsIgnoreCase("IE")) {
 
 			WebDriverManager.iedriver().setup();
@@ -81,8 +81,8 @@ public class BasePage {
 
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
-			devTools = ((EdgeDriver)driver).getDevTools();
-			
+			devTools = ((EdgeDriver) driver).getDevTools();
+
 		}
 
 		e_driver = new EventFiringWebDriver(driver);
@@ -161,8 +161,6 @@ public class BasePage {
 		options.setExperimentalOption("prefs", prefs);
 	}
 
-
-
 	public WebDriver existingBrowser() {
 
 		WebDriverManager.chromedriver().setup();
@@ -207,6 +205,11 @@ public class BasePage {
 	// Delete Cookies//
 	public void deleteCookies() {
 		driver.manage().deleteAllCookies();
+	}
+
+	// Navigate//
+	public void navigate(String url) {
+		driver.navigate().to(url);
 	}
 
 	// Back//
@@ -971,7 +974,7 @@ public class BasePage {
 		Actions action = new Actions(driver);
 		action.click(element).perform();
 	}
-	
+
 	public void movetoEleClickAction(WebElement element) {
 		Actions action = new Actions(driver);
 		action.moveToElement(element).click().perform();
@@ -1034,7 +1037,7 @@ public class BasePage {
 
 	@AfterMethod
 	public void tearDown() {
-		//quitBrowser();
+		// quitBrowser();
 		browser.info("Browser Closed Successfully");
 		ExtentReportConf.reportTearDown();
 	}

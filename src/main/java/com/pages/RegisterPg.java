@@ -74,7 +74,7 @@ public class RegisterPg extends BasePage {
 		return cb.get(3);
 
 	}
-
+	
 	public static WebElement successfullyRegMsg() {
 		WebElement msg = id("error");
 		return msg;

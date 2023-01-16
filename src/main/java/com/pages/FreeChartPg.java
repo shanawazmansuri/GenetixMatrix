@@ -62,6 +62,23 @@ public class FreeChartPg extends BasePage {
 		WebElement bdt = xpath("//button[@class='ui-datepicker-trigger']");
 		return bdt;
 	}
+	
+	public static WebElement hourHelp() {
+		WebElement hh = xpath("//dd[@class='ui_tpicker_hour']/div/span");
+		return hh;
+	}
+	
+	public static WebElement minHelp() {
+		WebElement mh = xpath("//dd[@class='ui_tpicker_minute']/div/span");
+		return mh;
+	}
+	
+	public static WebElement secHelp() {
+		WebElement sh = xpath("//dd[@class='ui_tpicker_second']/div/span");
+		return sh;
+	}
+	
+	
 
 	public static WebElement nowBtn() {
 		WebElement nwbt = xpath("//button[text()='Now']");
@@ -77,6 +94,13 @@ public class FreeChartPg extends BasePage {
 		WebElement con = id("select2-country_new-container");
 		return con;
 	}
+	
+	public static WebElement countrySearch() {
+		WebElement cs = xpath("//input[@class='select2-search__field']");
+		return cs;
+	}
+	
+	
 
 	public static List<WebElement> countryOptions() {
 		List<WebElement> con = elements("//ul[@id='select2-country_new-results']/li");
@@ -119,8 +143,8 @@ public class FreeChartPg extends BasePage {
 	}
 
 	public static WebElement closeBtn() {
-		List<WebElement> cb = elements("//i[@id = 'close-icon']");
-		return cb.get(0);
+		List<WebElement> cb = elements("//span[@class='modalclose']");
+		return cb.get(1);
 	}
 	
 	public static WebElement hpLogo() {

@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.tests.RegisterTest">
+      <class name="com.tests.FreeChartTest">
         <methods>
           <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="signInVerification" invocation-numbers="1"/>
+          <include name="freeChartReset" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.tests.RegisterTest -->
+      </class> <!-- com.tests.FreeChartTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

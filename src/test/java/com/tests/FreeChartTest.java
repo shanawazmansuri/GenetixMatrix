@@ -19,7 +19,7 @@ public class FreeChartTest extends BasePage {
 		return data;
 	}
 
-	@Test(dataProvider = "FreeChart", description = "Validating by Creating Free Chart by entering values", priority = 0, enabled = false)
+	@Test(dataProvider = "FreeChart", description = "Validating by Creating Free Chart by entering values", priority = 0, enabled = true)
 	public void freeChartCreationByEnteringText(String firstName, String lastName, String dob, String tob,
 			String country, String city) {
 		FreeChartFunc fcm = new FreeChartFunc(firstName, lastName, dob, tob, country, city);
@@ -79,7 +79,7 @@ public class FreeChartTest extends BasePage {
 
 	}
 
-	@Test(description = "Closing Free Chart Window", priority = 5, enabled = true)
+	@Test(description = "Closing Free Chart Window", priority = 5, enabled = false)
 	public void freeChartCloseWindow() {
 
 		try {

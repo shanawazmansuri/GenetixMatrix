@@ -13,7 +13,6 @@ import com.utilities.ExcelUtils;
 public class RegisterTest extends BasePage {
 
 	RegisterFunc register = new RegisterFunc();
-	
 
 	@DataProvider(name = "Register")
 	public Object[][] registerData() {

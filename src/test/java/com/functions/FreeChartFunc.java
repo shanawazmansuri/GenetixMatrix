@@ -4,6 +4,7 @@ import java.sql.Time;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -35,10 +36,9 @@ public class FreeChartFunc extends BasePage {
 		this.country = country;
 		this.city = city;
 	}
-	
-	public FreeChartFunc()
-	{
-		
+
+	public FreeChartFunc() {
+
 	}
 
 	public void freeChartCreationManual() {
@@ -62,16 +62,20 @@ public class FreeChartFunc extends BasePage {
 		enterText(FreeChartPg.birthDate(), dob);
 		chrt.pass("Entered Date of Birth as " + dob);
 
-		enterText(FreeChartPg.birthTime(), tob);
-		chrt.pass("Entered Time of Birth as " + tob);
+		click(FreeChartPg.helpBirthTime());
+		click(FreeChartPg.nowBtn());
+		click(FreeChartPg.doneBtn());
+		chrt.pass("Selected Current Time");
 
 		click(FreeChartPg.country());
-		Wait(1000);
+		enterText(FreeChartPg.countrySearch(), country);
+
 		for (WebElement ele : FreeChartPg.countryOptions()) {
 			String counVal = ele.getText();
 			System.out.println(counVal);
 			if (counVal.equalsIgnoreCase(country)) {
-				clickUsingJavascriptExecutor(ele, driver);
+				ele.click();
+				break;
 			}
 
 		}
@@ -109,6 +113,8 @@ public class FreeChartFunc extends BasePage {
 		chrt.pass("Entered Last Name as " + lastName);
 
 		click(FreeChartPg.calendarBirthDate());
+		chrt.pass("Clicked on BirthDate Help Calendar");
+
 
 		// Selecting Month
 		int year = 37;
@@ -123,22 +129,40 @@ public class FreeChartFunc extends BasePage {
 		}
 
 		click(FreeChartPg.calendarDays(18));
+		chrt.pass("Selected Birth Date");
+		
 
 		click(FreeChartPg.helpBirthTime());
-		click(FreeChartPg.nowBtn());
+		Actions ac = new Actions(driver);
+		ac.dragAndDropBy(FreeChartPg.hourHelp(), 100, 26).perform();
+		ac.dragAndDropBy(FreeChartPg.minHelp(), 75, 26).perform();
+		ac.dragAndDropBy(FreeChartPg.secHelp(), 50, 26).perform();
+		chrt.pass("Clicked on Birth Time");
+		
+
 		click(FreeChartPg.doneBtn());
-		chrt.pass("Selected Current Time");
+		chrt.pass("Clicked on Done Button");
 
 		click(FreeChartPg.country());
-		Wait(1000);
-		click(FreeChartPg.countryOptions().get(1));
+		enterText(FreeChartPg.countrySearch(), country);
+		chrt.pass("Entered Country in Search field "+country);
+
+		for (WebElement ele : FreeChartPg.countryOptions()) {
+			String counVal = ele.getText();
+			System.out.println(counVal);
+			if (counVal.equalsIgnoreCase(country)) {
+				ele.click();
+				break;
+			}
+
+		}
 		chrt.pass("Selected Country as " + country);
 
 		enterText(FreeChartPg.city(), city);
 		FreeChartPg.city().sendKeys(Keys.TAB);
 		chrt.pass("Entered City as " + city);
 
-		Wait(5000);
+		Wait(10000);
 		click(FreeChartPg.createBtn());
 		chrt.pass("Clicked on Create Button");
 
@@ -161,11 +185,10 @@ public class FreeChartFunc extends BasePage {
 		closeBrowser();
 		switchtoParentWindow();
 		String titleParentTxt = getTitle();
-		System.out.println("Title 2 is "+titleParentTxt);
+		System.out.println("Title 2 is " + titleParentTxt);
 		Assert.assertTrue(titleParentTxt.contains("Free Foundation Chart"));
 		pdf.pass("Closed Child PDF window and Switched to Parent window");
 
-		
 	}
 
 	public void resetChart() {
@@ -173,16 +196,8 @@ public class FreeChartFunc extends BasePage {
 		click(FreeChartPg.resetChartBtn());
 		reset.pass("Clicked on Reset Chart button");
 		
-		try {
-			boolean chStatus = isDisplayed(FreeChartPg.fullDetails());
-			System.out.println("Status is " + chStatus);
-			assertFalse(chStatus);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			reset.pass("Chart Details has been Resetted Successfully");
-		}
-
-		
+		Assert.assertEquals(getTitle(), "Genetic Matrix – Human Design and Astro HD Services");
+		reset.pass("Chart Details has been Resetted Successfully and Switched to Home Page");
 
 	}
 
@@ -190,9 +205,11 @@ public class FreeChartFunc extends BasePage {
 		boolean chStatus = isDisplayed(FreeChartPg.fullDetails());
 		System.out.println("Status is " + chStatus);
 		assertTrue(chStatus);
+		chrt.pass("Chart Details are displayed successfully");
+
 
 	}
-	
+
 	public void closeWindow() {
 		close = ExtentReportConf.createTest("Closing Window");
 		click(FreeChartPg.freeChartLink());
