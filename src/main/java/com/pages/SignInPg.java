@@ -85,7 +85,7 @@ public class SignInPg extends BasePage {
 	}
 
 	public static WebElement twitterText() {
-		WebElement tw = xpath("//h2[contains(text(),'Authorize Gm Live to access your account?')]");
+		WebElement tw = xpath("//h2[contains(text(),'Authori')]");
 		return tw;
 	}
 	

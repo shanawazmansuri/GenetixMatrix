@@ -74,7 +74,7 @@ public class RegisterPg extends BasePage {
 		return cb.get(3);
 
 	}
-	
+
 	public static WebElement successfullyRegMsg() {
 		WebElement msg = id("error");
 		return msg;
@@ -135,6 +135,16 @@ public class RegisterPg extends BasePage {
 	public static WebElement twitterText() {
 		WebElement tw = xpath("//h2[contains(text(),'Authorize Gm Live to access your account?')]");
 		return tw;
+	}
+
+	public static WebElement regTermsCond() {
+		return xpath("//a[@class='regnotice']");
+
+	}
+
+	public static WebElement termsCondCaption() {
+		return xpath("//h3[contains(text(),'Privacy, Terms')]");
+
 	}
 
 }

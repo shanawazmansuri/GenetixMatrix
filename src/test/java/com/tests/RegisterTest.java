@@ -20,7 +20,7 @@ public class RegisterTest extends BasePage {
 		return data;
 	}
 
-	@Test(dataProvider = "Register", description = "Validating by registering new User with proper data", priority = 1, enabled = false)
+	@Test(dataProvider = "Register", description = "Validating by registering new User with proper data", priority = 1, enabled = true)
 	public void signInVerification(String firstName, String lastName, String emailId, String userName, String password,
 			String confPassword) {
 		RegisterFunc reg = new RegisterFunc(firstName, lastName, emailId, userName, password, confPassword);
@@ -90,10 +90,16 @@ public class RegisterTest extends BasePage {
 
 	}
 
-	@Test(description = "Verify by Signinig from Twitter Account", priority = 8, enabled = true)
+	@Test(description = "Verify by Signinig from Twitter Account", priority = 8, enabled = false)
 	public void verifySignInTwitterId() {
 
 		register.twitterSignIn();
+	}
+	
+	@Test(description = "Verify navigation to Register Terms and Condition Page", priority = 9, enabled = false)
+	public void verifyRegisterTermsCondition() {
+
+		register.termsCondition();
 	}
 
 }

@@ -69,10 +69,10 @@ public class BasePage {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		} else if (browsername.equalsIgnoreCase("chrome")) {
-
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
-			devTools = ((ChromeDriver) driver).getDevTools();
+			ChromeOptions opt = new ChromeOptions();
+			opt.addArguments("--remote-allow-origins=*");
+			driver = new ChromeDriver(opt);
 		} else if (browsername.equalsIgnoreCase("IE")) {
 
 			WebDriverManager.iedriver().setup();
@@ -81,8 +81,7 @@ public class BasePage {
 
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
-			devTools = ((EdgeDriver) driver).getDevTools();
-
+		
 		}
 
 		e_driver = new EventFiringWebDriver(driver);
@@ -1030,7 +1029,7 @@ public class BasePage {
 		browser.info("Opened Browser Successfully");
 		maximizeBrowser();
 		browser.info("Maximized the Browser");
-		implicitWait(60);
+		implicitWait(10);
 		waitPageLoadTimeout(60);
 
 	}

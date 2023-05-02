@@ -115,7 +115,6 @@ public class FreeChartFunc extends BasePage {
 		click(FreeChartPg.calendarBirthDate());
 		chrt.pass("Clicked on BirthDate Help Calendar");
 
-
 		// Selecting Month
 		int year = 37;
 		for (int i = 0; i < year; i++) {
@@ -130,7 +129,6 @@ public class FreeChartFunc extends BasePage {
 
 		click(FreeChartPg.calendarDays(18));
 		chrt.pass("Selected Birth Date");
-		
 
 		click(FreeChartPg.helpBirthTime());
 		Actions ac = new Actions(driver);
@@ -138,14 +136,13 @@ public class FreeChartFunc extends BasePage {
 		ac.dragAndDropBy(FreeChartPg.minHelp(), 75, 26).perform();
 		ac.dragAndDropBy(FreeChartPg.secHelp(), 50, 26).perform();
 		chrt.pass("Clicked on Birth Time");
-		
 
 		click(FreeChartPg.doneBtn());
 		chrt.pass("Clicked on Done Button");
 
 		click(FreeChartPg.country());
 		enterText(FreeChartPg.countrySearch(), country);
-		chrt.pass("Entered Country in Search field "+country);
+		chrt.pass("Entered Country in Search field " + country);
 
 		for (WebElement ele : FreeChartPg.countryOptions()) {
 			String counVal = ele.getText();
@@ -195,7 +192,7 @@ public class FreeChartFunc extends BasePage {
 		reset = ExtentReportConf.createTest("Reset Chart");
 		click(FreeChartPg.resetChartBtn());
 		reset.pass("Clicked on Reset Chart button");
-		
+
 		Assert.assertEquals(getTitle(), "Genetic Matrix – Human Design and Astro HD Services");
 		reset.pass("Chart Details has been Resetted Successfully and Switched to Home Page");
 
@@ -206,7 +203,6 @@ public class FreeChartFunc extends BasePage {
 		System.out.println("Status is " + chStatus);
 		assertTrue(chStatus);
 		chrt.pass("Chart Details are displayed successfully");
-
 
 	}
 

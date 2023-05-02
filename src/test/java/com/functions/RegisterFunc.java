@@ -19,6 +19,7 @@ public class RegisterFunc extends BasePage {
 	ExtentTest si;
 	ExtentTest regNow;
 	ExtentTest socialMedia;
+	ExtentTest tc;
 
 	private String firstName;
 	private String lastName;
@@ -299,6 +300,29 @@ public class RegisterFunc extends BasePage {
 		waitTovisibleElement(RegisterPg.twitterText(), 30);
 		assertEquals(RegisterPg.twitterText(), "Authorize Gm Live to access your account?");
 		socialMedia.pass("Successfully Landed on Twitter Sign In page");
+
+	}
+	
+	public void termsCondition() {
+
+		tc = ExtentReportConf.createTest("RegTermsCondition");
+		click(RegisterPg.registerBtnHP());
+		tc.pass("Clicked on Register button of Home Page");
+
+		waitTovisibleElement(RegisterPg.crAnAccHeading(), 30);
+		String headTxt = RegisterPg.crAnAccHeading().getText().trim();
+		Assert.assertEquals(headTxt, "Create an Account");
+		tc.pass("Landed successfully on Register Page");
+
+		click(RegisterPg.regTermsCond());
+		tc.pass("Clicked on Terms And Condition Link");
+
+		waitTovisibleElement(RegisterPg.termsCondCaption(), 30);
+		Assert.assertTrue(gettext(RegisterPg.termsCondCaption()).contains("Privacy, Terms & Conditions:"));
+		tc.pass("Successfully Landed on Register Terms and Condition Page");
+		
+		back();
+		tc.pass("Navigated Back to Home Page");
 
 	}
 }

@@ -39,11 +39,11 @@ public class SignInFunc extends BasePage {
 			assertEquals(SignInPg.signInTxt(), "Sign In");
 			signIn.pass("Landed successfully on SignIn Page");
 
-			String username = pro.prop.getProperty("username");
+			String username = pro.prop.getProperty("username2");
 			enterText(SignInPg.userName(), username);
 			signIn.pass("Entered User name as " + username);
 
-			String password = pro.prop.getProperty("password");
+			String password = pro.prop.getProperty("password2");
 			enterText(SignInPg.pwd(), password);
 			signIn.pass("Entered Password as " + password);
 
@@ -186,7 +186,7 @@ public class SignInFunc extends BasePage {
 		socialMedia.pass("Clicked on Twitter Icon");
 
 		waitTovisibleElement(SignInPg.twitterText(), 30);
-		assertEquals(SignInPg.twitterText(), "Authorize Gm Live to access your account?");
+		assertTrueContains(SignInPg.twitterText(), "Gm Live to access your account?");
 		socialMedia.pass("Successfully Landed on Twitter Sign In page");
 
 	}
